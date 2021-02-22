@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'tasks',
     'users',
     'about',
+    'bootstrapform',
 ]
 
 MIDDLEWARE = [

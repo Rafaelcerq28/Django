@@ -23,6 +23,10 @@
 }
 
 /*Botão de adicionar*/
+#addlink {
+    text-decoration: none;
+}
+
 .add-div {
     background-color: #3476e2;
     cursor:pointer;
@@ -98,4 +102,13 @@ footer p {
     text-align: center;
     top: 50%;
     position: relative;
+}
+
+/* Messages */
+ul.messages {
+    padding: 0;
+}
+
+ul.messages li {
+    list-style: none;
 }

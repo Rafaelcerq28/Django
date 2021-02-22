@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+<!-- VER
+https://www.horadecodar.com.br/2019/02/26/utilizando-django-bootstrap-form/ -->
+{% block title %}Editando '{{task.title}}'{% endblock %}
+
+{% block content %}
+<div class="offset-1 col-10 list-div">
+    <h1>Editando '{{task.title}}'</h1>
+    <div class="form-group">
+        <form method="POST">{% csrf_token %}        
+            {{ form|bootstrap}}
+            <!-- Para inserir da forma antiga{{ form.as_p }} -->
+            <input type="submit" class="btn btn-success" value="Editar Tarefa">           
+            <br><br>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
