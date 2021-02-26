@@ -1,10 +1,27 @@
+from django.core import paginator
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Task
 from .forms import TaskForm
+from django.core.paginator import Paginator
 from django.contrib import messages
 
 def tasklist(request):
-    tasks = Task.objects.all().order_by('-created_at')
+
+    search = request.GET.get('search')
+
+    if search:
+        tasks = Task.objects.filter(title__icontains=search)
+    else: 
+
+        #Faz select e ordena pela data de criacao
+        tasks_list = Task.objects.all().order_by('-created_at')
+        #Paginador, recebe a lista com os objetos e a quantidade de objetos por pagina
+        paginator = Paginator(tasks_list, 3)
+        #Pega a pagina atual da minha requisição
+        page = request.GET.get('page')
+        #Salva o paginador no objeto
+        tasks = paginator.get_page(page)
+
     return render(request,'tasks/list.html', {'tasks':tasks})
 
 def taskView(request, id):
